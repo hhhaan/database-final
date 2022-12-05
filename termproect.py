@@ -86,5 +86,20 @@ elif p == 0:
             mem_id, pid, trainer_id  = input('회원번호, 프로그램번호, 담당트레이너번호 :').split(',')
             sql = f"INSERT INTO Manage (mem_id, pid, trainer_id) VALUES ('{mem_id}', '{pid}', '{trainer_id}');"
             cursor.execute(sql)
+    if k == 3:
+        # entity = input('수정할 테이블을 선택하세요. Gym, Member, Trainer, Program, InBody, Manage : ')
+        # sql = f"SELECT * FROM {entity};"
+        # cursor.execute(sql)
+        # pr = cursor.fetchall()
+        # print(pr)
+        # if entity == 'Gym':
+        entity = input('수정할 테이블을 선택하세요. Gym, Member, Trainer, Program, InBody, Manage : ')
+        row, val, id = input('row, value, id :').split(',')
+        sql1 = f"UPDATE {entity} SET {row} = '{val}' WHERE Gym_id = {id}"
+        cursor.execute(sql1)
+    if k == 4:
+        entity = input('삭제할 테이블을 선택하세요. Gym, Member, Trainer, Program, InBody, Manage : ')
+        row, id = input('row, id').split(',')
+        sql = f"DELETE FROM {entity} WHERE {row} = {id}"
 conn.commit()
 conn.close()
